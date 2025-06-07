@@ -2,15 +2,16 @@ import { useState } from "react";
 import styles from "./AddBalance.module.css";
 
 
-export default function AddBalance({balance , setBalance}) {
+export default function AddBalance({balance , setBalance, closeModal}) {
 
     const [value, setValue] = useState(0);
 
     const handleSubmit = (e) => {
-        console.log("submit >>", e.target.elements.addBalValue.value);
+        // console.log("submit >>", e.target.elements.addBalValue.value);
         const temp = parseInt(e.target.elements.addBalValue.value);
         
         setBalance(balance + temp);
+        closeModal();
     }
 
 
@@ -35,7 +36,9 @@ export default function AddBalance({balance , setBalance}) {
                 className={styles.incomeInput} type="number" placeholder="Income Amount" />
                 <button 
                 type="submit" className={styles.addBalanceButton}>Add balance</button>
-                <button type="button" className={styles.cancelButton}>Cancel</button>
+                <button 
+                onClick={closeModal}
+                type="button" className={styles.cancelButton}>Cancel</button>
             </form>
         </div>
     )
