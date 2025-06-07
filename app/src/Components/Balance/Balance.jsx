@@ -7,29 +7,21 @@ import ReactModal from "react-modal";
 
 function Balance() {
 
-    const [balance, setBalance] = useState(5000);
-    // console.log(typeof(balance));
+    const [balance, setBalance] = useState(() => {
+        const storedBalance = localStorage.getItem('balance');
+        const intBalance = parseInt(storedBalance);
+
+        return ((!isNaN(intBalance)) ? intBalance : 5000)
+    });
+    // console.log(balance);
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
 
 
-    // useEffect to fetch balance from LocalStorage
-    // cleaner function to update the value in LocalStorage
     useEffect(() => {
-
-        const tempBal = parseInt(localStorage.getItem('balance'));
-        
-        if(tempBal){
-            setBalance(tempBal);
-        }
-
-
-        return function () {
-            localStorage.setItem('balance', JSON.stringify(balance));
-        }
-
-    }, [])
+        localStorage.setItem('balance', JSON.stringify(balance));
+    }, [balance])
     
 
     return (<>
