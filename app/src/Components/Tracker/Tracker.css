@@ -1,0 +1,11 @@
+.tracker {
+    background-color: #626262;
+
+    margin : 20px;
+    border-radius: 10px;
+
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
