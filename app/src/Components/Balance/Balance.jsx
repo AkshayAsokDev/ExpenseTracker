@@ -29,7 +29,7 @@ function Balance() {
             <p className={styles.balanceText} >{`Wallet Balance: `}<span style={{color:"#89E148"}} >{`₹${balance}`}</span></p>
             <button 
             onClick={openModal}
-            type="button" className={styles.incomeButton}>+ Add income</button>
+            type="button" className={styles.incomeButton}>+ Add Income</button>
         </div>
 
         <ReactModal
