@@ -30,7 +30,7 @@ const data = [
 export default function ExpenseSummaryPie({pieData}) {
 
     
-    console.log("pieData >>", pieData);
+    // console.log("pieData >>", pieData);
 
 
     return (<div className={styles.pieWindow}>

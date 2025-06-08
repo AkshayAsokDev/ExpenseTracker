@@ -5,7 +5,7 @@ import { BarChart, Bar, ResponsiveContainer, Legend, XAxis, YAxis } from 'rechar
 
 export default function ExpenseSummaryBar({pieData}) {
 
-    console.log("inside bar>>", pieData);
+    // console.log("inside bar>>", pieData);
 
 
     return (
