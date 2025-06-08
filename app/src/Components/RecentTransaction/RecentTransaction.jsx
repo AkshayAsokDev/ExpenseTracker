@@ -9,7 +9,9 @@ export default function RecentTransaction({expenseData}) {
     return (
         <div className={styles.trcContainer} >
             <h2 className={styles.heading}>Recent Transactions</h2>
-            
+            <div className={styles.transactionWindow} >
+                No Transactions
+            </div>
         </div>
     )
 

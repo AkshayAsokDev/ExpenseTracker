@@ -1,13 +1,13 @@
 .heading {
     margin: 0;
-    margin-left: 100px;
+    /* margin-left: 100px; */
     padding: 12px 0px 9px 20px ;
     color: white;
 }
 
 .transactionWindow {
-    width: 40%;
-    height: 400px;
+    width: 100%;
+    height: fit-content;
     margin: 20px;
     padding: 20px;
     border-radius: 15px;
@@ -16,6 +16,7 @@
 }
 
 .trcContainer {
-    margin : 0px 10px 0px 65px,
-    
+    margin : 0px 10px 0px 0px;
+    padding : 0px 50px 0px 50px;
+    width: 40%;
 }

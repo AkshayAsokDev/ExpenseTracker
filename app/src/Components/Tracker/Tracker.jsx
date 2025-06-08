@@ -60,8 +60,8 @@ export default function Tracker() {
             <ExpenseSummaryPie pieData={pieData} />
         </div>
         <div className="barContainer">
-            <ExpenseSummaryBar pieData={pieData} />
             <RecentTransaction />
+            <ExpenseSummaryBar pieData={pieData} />
         </div>
         </>
     )
