@@ -14,7 +14,7 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
             const data = {
                 title : e.target.elements.title.value,
                 price : parseInt(e.target.elements.price.value),
-                data : e.target.elements.date.value,
+                date : e.target.elements.date.value,
                 category : e.target.elements.category.value
             }
             console.log("data >> ", data);
