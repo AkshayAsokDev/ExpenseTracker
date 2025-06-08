@@ -5,24 +5,25 @@ import ReactModal from "react-modal";
 
 
 
-function Balance() {
+function Balance({balance, setBalance}) {
 
-    const [balance, setBalance] = useState(() => {
-        const storedBalance = localStorage.getItem('balance');
-        const intBalance = parseInt(storedBalance);
+    // const [balance, setBalance] = useState(() => {
+    //     const storedBalance = localStorage.getItem('balance');
+    //     const intBalance = parseInt(storedBalance);
 
-        return ((!isNaN(intBalance)) ? intBalance : 5000)
-    });
+    //     return ((!isNaN(intBalance)) ? intBalance : 5000)
+    // });
     // console.log(balance);
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
 
 
-    useEffect(() => {
-        localStorage.setItem('balance', JSON.stringify(balance));
-    }, [balance])
+    // useEffect(() => {
+    //     localStorage.setItem('balance', JSON.stringify(balance));
+    // }, [balance])
     
+    console.log("balance >>", balance);
 
     return (<>
         <div className={styles.balanceWindow}>

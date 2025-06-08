@@ -8,6 +8,14 @@ import RecentTransaction from "../RecentTransaction/RecentTransaction";
 
 export default function Tracker() {
     
+    const [balance, setBalance] = useState(() => {
+        const storedBalance = localStorage.getItem('balance');
+        const intBalance = parseInt(storedBalance);
+        console.log("intbalance >>", intBalance);
+
+        return ((!isNaN(intBalance)) ? intBalance : 5000)
+    });
+
     const [expenseData, setExpenseData] = useState(() => {
         const storedExpenseData = JSON.parse(localStorage.getItem('expenses'));
 
@@ -23,6 +31,11 @@ export default function Tracker() {
 
     const [pieData, setPieData] = useState([{name : 'Food', value : 0}, {name : 'Entertainment', value : 0}, {name : 'Travel', value : 0}]);
 
+
+    useEffect(() => {
+        localStorage.setItem('balance', JSON.stringify(balance));
+    }, [balance])
+
     useEffect(() => {
         console.log("expense data >> ", expenseData);
         console.log("expense >>", expense);
@@ -30,6 +43,9 @@ export default function Tracker() {
         //value received - lated update to save into localStorage
         localStorage.setItem('expenses', JSON.stringify(expenseData));
         localStorage.setItem('expense', expense);
+
+        //balance update
+        setBalance(balance-expense);
 
         //calculate data for chart and bar
         
@@ -55,7 +71,7 @@ export default function Tracker() {
     return (
         <>
         <div className="tracker">
-            <Balance />
+            <Balance balance={balance} setBalance={setBalance} />
             <Expense expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
             <ExpenseSummaryPie pieData={pieData} />
         </div>

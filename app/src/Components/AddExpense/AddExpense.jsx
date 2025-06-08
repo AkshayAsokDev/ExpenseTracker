@@ -21,6 +21,7 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
             setExpenseData([...expenseData, data]);
             setExpense(expense+data.price);
 
+
             closeModal();
     }
 
