@@ -27,7 +27,7 @@ function Balance({balance, setBalance}) {
 
     return (<>
         <div className={styles.balanceWindow}>
-            <p className={styles.balanceText} >{`Wallet Balance: `}<span style={{color:"#89E148"}} >{`₹${balance}`}</span></p>
+            <p className={styles.balanceText} >{`Wallet Balance: `}{`₹${balance}`}</p>
             <button 
             onClick={openModal}
             type="button" className={styles.incomeButton}>+ Add Income</button>
