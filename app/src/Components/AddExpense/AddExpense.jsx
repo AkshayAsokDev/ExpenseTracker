@@ -84,15 +84,15 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                     name="addExpenseForm">
                         <input 
                         name="title"
-                        className={styles.incomeInput} type="text" placeholder="Title" />
+                        className={styles.expenseInput} type="text" placeholder="Title" />
                         <input 
                         name="price"
-                        className={styles.incomeInput} type="number" placeholder="Price" />
+                        className={styles.expenseInput} type="number" placeholder="Price" />
                         <input 
                         name="date"
-                        className={styles.incomeInput} type="date"/>
+                        className={styles.expenseInput} type="date"/>
                         <select name="category"
-                        className={styles.incomeInput}
+                        className={styles.expenseInput}
                         >
                             <option value="" defaultValue>Select Category</option>
                             <option value="food" >Food</option>
@@ -100,7 +100,7 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                             <option value="entertainment" >Entertainment</option>
                         </select>
                         <button 
-                        type="submit" className={styles.addBalanceButton}>Add expense</button>
+                        type="submit" className={styles.addExpenseButton}>Add expense</button>
                         <button 
                         onClick={closeModal}
                         type="button" className={styles.cancelButton}>Cancel</button>

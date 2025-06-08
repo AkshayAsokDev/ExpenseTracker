@@ -2,7 +2,8 @@ import Balance from "../Balance/Balance";
 import "./Tracker.css";
 import Expense from "../Expense/Expense";
 import { useEffect, useState } from "react";
-
+import ExpenseSummaryPie from "../ExpenseSummaryPie/ExpenseSummaryPie";
+import ExpenseSummaryBar from "../ExpenseSummaryBar/ExpenseSummaryBar";
 
 export default function Tracker() {
     
@@ -19,6 +20,7 @@ export default function Tracker() {
         return ((!isNaN(intExpense)) ? intExpense : 0)
     });
 
+    const [pieData, setPieData] = useState([{name : 'Food', value : 0}, {name : 'Entertainment', value : 0}, {name : 'Travel', value : 0}]);
 
     useEffect(() => {
         console.log("expense data >> ", expenseData);
@@ -28,13 +30,37 @@ export default function Tracker() {
         localStorage.setItem('expenses', JSON.stringify(expenseData));
         localStorage.setItem('expense', expense);
 
+        //calculate data for chart and bar
+        
+        const calculateData = () => {
+            return pieData.map(cat => {
+                const total = expenseData.reduce((acc, curr) => {
+                    if (cat.name.toLowerCase() === curr.category) {
+                    return acc + curr.price;
+                    }
+                    return acc;
+                }, 0);
+
+                return { name: cat.name, value: total };
+            });
+        };
+
+        setPieData(calculateData());
+        
+
 
     }, [expenseData, expense])
 
     return (
+        <>
         <div className="tracker">
             <Balance />
             <Expense expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
+            <ExpenseSummaryPie pieData={pieData} />
         </div>
+        <div className="barContainer">
+            <ExpenseSummaryBar pieData={pieData} />
+        </div>
+        </>
     )
 }

@@ -1,0 +1,15 @@
+.heading {
+    margin: 0;
+    padding: 12px 0px 9px 20px ;
+    color: white;
+}
+
+.barWindow {
+    width: 40%;
+    height: 400px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 15px;
+
+    background-color: white;
+}
