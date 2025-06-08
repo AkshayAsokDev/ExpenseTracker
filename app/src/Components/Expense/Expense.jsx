@@ -4,7 +4,7 @@ import ReactModal from "react-modal";
 import AddExpense from "../AddExpense/AddExpense";
 
 
-export default function Expense ({expense, setExpense, expenseData, setExpenseData}) {
+export default function Expense ({expense, setExpense, expenseData, setExpenseData, balance, setBalance}) {
 
 
     
@@ -36,7 +36,7 @@ export default function Expense ({expense, setExpense, expenseData, setExpenseDa
             },
         }}
         >
-            <AddExpense closeModal={closeModal} expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
+            <AddExpense  balance={balance} setBalance={setBalance} closeModal={closeModal} expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
         </ReactModal>
     </>)
 

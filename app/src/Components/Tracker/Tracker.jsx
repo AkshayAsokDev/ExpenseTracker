@@ -43,9 +43,7 @@ export default function Tracker() {
         //value received - lated update to save into localStorage
         localStorage.setItem('expenses', JSON.stringify(expenseData));
         localStorage.setItem('expense', expense);
-
-        //balance update
-        setBalance(balance-expense);
+        
 
         //calculate data for chart and bar
         
@@ -72,7 +70,7 @@ export default function Tracker() {
         <>
         <div className="tracker">
             <Balance balance={balance} setBalance={setBalance} />
-            <Expense expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
+            <Expense balance={balance} setBalance={setBalance} expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
             <ExpenseSummaryPie pieData={pieData} />
         </div>
         <div className="barContainer">

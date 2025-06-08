@@ -4,7 +4,7 @@ import { enqueueSnackbar } from "notistack";
 
 
 
-function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModal}) {
+function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModal, balance, setBalance}) {
 
     
 
@@ -20,6 +20,8 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
             console.log("data >> ", data);
             setExpenseData([...expenseData, data]);
             setExpense(expense+data.price);
+            //update balance
+            setBalance(balance-data.price);
 
 
             closeModal();

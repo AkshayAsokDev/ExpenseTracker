@@ -23,7 +23,7 @@ function Balance({balance, setBalance}) {
     //     localStorage.setItem('balance', JSON.stringify(balance));
     // }, [balance])
     
-    console.log("balance >>", balance);
+    // console.log("balance >>", balance);
 
     return (<>
         <div className={styles.balanceWindow}>
