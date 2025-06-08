@@ -100,7 +100,7 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                             <option value="entertainment" >Entertainment</option>
                         </select>
                         <button 
-                        type="submit" className={styles.addExpenseButton}>Add expense</button>
+                        type="submit" className={styles.addExpenseButton}>Add Expense</button>
                         <button 
                         onClick={closeModal}
                         type="button" className={styles.cancelButton}>Cancel</button>

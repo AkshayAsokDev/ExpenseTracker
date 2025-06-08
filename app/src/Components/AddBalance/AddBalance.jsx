@@ -55,7 +55,7 @@ export default function AddBalance({balance , setBalance, closeModal}) {
                 }}
                 className={styles.incomeInput} type="number" placeholder="Income Amount" />
                 <button 
-                type="submit" className={styles.addBalanceButton}>Add balance</button>
+                type="submit" className={styles.addBalanceButton}>Add Balance</button>
                 <button 
                 onClick={closeModal}
                 type="button" className={styles.cancelButton}>Cancel</button>
