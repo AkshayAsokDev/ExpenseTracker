@@ -9,7 +9,7 @@ export default function ExpenseSummaryBar({pieData}) {
 
 
     return (
-        <>
+        <div className={styles.topWindow}>
             <h2 className={styles.heading}>Top Expenses</h2>
             <div className={styles.barWindow}>
                 <ResponsiveContainer width="100%" height="100%">
@@ -21,7 +21,7 @@ export default function ExpenseSummaryBar({pieData}) {
                     </BarChart>
                 </ResponsiveContainer>
             </div>
-        </>
+        </div>
     )
 
 }

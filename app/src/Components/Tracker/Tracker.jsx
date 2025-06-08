@@ -4,6 +4,7 @@ import Expense from "../Expense/Expense";
 import { useEffect, useState } from "react";
 import ExpenseSummaryPie from "../ExpenseSummaryPie/ExpenseSummaryPie";
 import ExpenseSummaryBar from "../ExpenseSummaryBar/ExpenseSummaryBar";
+import RecentTransaction from "../RecentTransaction/RecentTransaction";
 
 export default function Tracker() {
     
@@ -60,6 +61,7 @@ export default function Tracker() {
         </div>
         <div className="barContainer">
             <ExpenseSummaryBar pieData={pieData} />
+            <RecentTransaction />
         </div>
         </>
     )
