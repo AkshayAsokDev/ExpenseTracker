@@ -1,5 +1,5 @@
 import Balance from "../Balance/Balance";
-import "./Tracker.css";
+import styles from "./Tracker.module.css";
 import Expense from "../Expense/Expense";
 import { useEffect, useState } from "react";
 import ExpenseSummaryPie from "../ExpenseSummaryPie/ExpenseSummaryPie";
@@ -67,16 +67,18 @@ export default function Tracker() {
     }, [expenseData, expense])
 
     return (
-        <>
-        <div className="tracker">
-            <Balance balance={balance} setBalance={setBalance} />
-            <Expense balance={balance} setBalance={setBalance} expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
-            <ExpenseSummaryPie pieData={pieData} />
+        <div style={{
+            border : "1px solid orange"
+        }}>
+            <div className={styles.tracker}>
+                <Balance balance={balance} setBalance={setBalance} />
+                <Expense balance={balance} setBalance={setBalance} expense={expense} setExpense={setExpense} expenseData={expenseData} setExpenseData={setExpenseData} />
+                <ExpenseSummaryPie pieData={pieData} />
+            </div>
+            <div className={styles.barContainer}>
+                <RecentTransaction expenseData={expenseData} />
+                <ExpenseSummaryBar pieData={pieData} />
+            </div>
         </div>
-        <div className="barContainer">
-            <RecentTransaction expenseData={expenseData} />
-            <ExpenseSummaryBar pieData={pieData} />
-        </div>
-        </>
     )
 }
