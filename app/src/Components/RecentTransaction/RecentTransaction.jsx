@@ -172,7 +172,10 @@ export default function RecentTransaction({expenseData}) {
             </div>)
             }
 
-            <div className={styles.transactionWindow} >
+
+            {
+                expenseData.length > 0 && (
+                    <div className={styles.transactionWindow} >
                 
 
                 {/* Page system */}
@@ -227,6 +230,9 @@ export default function RecentTransaction({expenseData}) {
 
                 </div>
             </div>
+                )
+            }
+            
         </div>
     )
 
