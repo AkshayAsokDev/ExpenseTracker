@@ -68,7 +68,7 @@ export default function Tracker() {
 
     return (
         <div style={{
-            border : "1px solid orange"
+            // border : "1px solid orange"
         }}>
             <div className={styles.tracker}>
                 <Balance balance={balance} setBalance={setBalance} />
