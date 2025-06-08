@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./AddBalance.module.css";
+import { enqueueSnackbar } from "notistack";
 
 
 export default function AddBalance({balance , setBalance, closeModal}) {
@@ -14,7 +15,19 @@ export default function AddBalance({balance , setBalance, closeModal}) {
         closeModal();
     }
 
+    const validateInput = (e) => {
 
+        // if income is negative
+        if(parseInt(e.target.elements.addBalValue.value) <= 0 ){
+            enqueueSnackbar("Income cannot be negative or zero", {
+                variant : "error"
+            })
+            return false
+        }
+
+        return true
+
+    }
 
     //return view
     return (
@@ -23,7 +36,14 @@ export default function AddBalance({balance , setBalance, closeModal}) {
             <form
             onSubmit={(e) => {
                     e.preventDefault();
-                    handleSubmit(e);
+
+                    if(validateInput(e)) {
+                        handleSubmit(e);
+                        enqueueSnackbar("Income added successfully", {
+                            variant : "success"
+                        })
+                    }
+                    
             }}
             name="addBalanceForm">
                 <input 
