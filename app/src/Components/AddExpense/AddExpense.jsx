@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styles from "./AddExpense.module.css";
 import { enqueueSnackbar } from "notistack";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
-function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModal, balance, setBalance}) {
+function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModal, balance, setBalance, edit=false}) {
 
     
 
@@ -15,7 +16,8 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                 title : e.target.elements.title.value,
                 price : parseInt(e.target.elements.price.value),
                 date : e.target.elements.date.value,
-                category : e.target.elements.category.value
+                category : e.target.elements.category.value,
+                id : uuidv4(),
             }
             console.log("data >> ", data);
             setExpenseData([...expenseData, data]);
@@ -61,10 +63,70 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
             return false
         }
 
+        //if expense is greater than balance
+        if(e.target.elements.price.value > balance){
+            enqueueSnackbar("Expense should be less than available balance", {
+                variant : "error"
+            })
+            return false
+        }
+
         // if no errors, return true
         return true
 
     }
+
+    const handleEdit = (e) => {
+        console.log(" edit function");
+    }
+
+    if(edit === true){
+        return (
+            <div className={styles.addBalanceWindow}>
+                <p className={styles.addBalanceText} >{`Edit Expenses`}</p>
+                <form
+                onSubmit={(e) => {
+                        e.preventDefault();
+
+                        //before calling handler, run validation on input and only
+                        //proceed to handler if passed
+                        if(validateInput(e)){
+                            handleEdit(e);
+                            enqueueSnackbar("Expense edited successfully", {
+                                variant : "success"
+                            })
+                        }
+
+                        
+                }}
+                name="addExpenseForm">
+                    <input 
+                    name="title"
+                    className={styles.expenseInput} type="text" placeholder="Title" />
+                    <input 
+                    name="price"
+                    className={styles.expenseInput} type="number" placeholder="Price" />
+                    <input 
+                    name="date"
+                    className={styles.expenseInput} type="date"/>
+                    <select name="category"
+                    className={styles.expenseInput}
+                    >
+                        <option value="" defaultValue>Select Category</option>
+                        <option value="food" >Food</option>
+                        <option value="travel" >Travel</option>
+                        <option value="entertainment" >Entertainment</option>
+                    </select>
+                    <button 
+                    type="submit" className={styles.addExpenseButton}>Edit Expense</button>
+                    <button 
+                    onClick={closeModal}
+                    type="button" className={styles.cancelButton}>Cancel</button>
+                </form>
+            </div>
+    )
+    }
+
 
     return (
         <div className={styles.addBalanceWindow}>

@@ -140,26 +140,10 @@ export default function RecentTransaction({expenseData}) {
 
     const prevRef = useRef(null);
     const nextRef = useRef(null);
-    // const [groupedItems, setGroupedItems] = useState([]);
+    
 
 
-    // const sliceArray = (array, size) => {
-    //     const chunks = [];
-
-    //     for(let i=0; i<array.length; i+=size){
-    //         chunks.push(array.slice(i, i+size));
-    //     }
-
-    //     console.log("chunks>> ", chunks);
-    //     return chunks
-    // }
-
-    // useEffect(() => {
-
-    //     const data = sliceArray(expenseData, 3);
-    //     setGroupedItems(data);
-
-    // }, [expenseData])
+    
     
 
     return (
