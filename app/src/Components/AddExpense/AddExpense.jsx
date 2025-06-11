@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddExpense.module.css";
 import { enqueueSnackbar } from "notistack";
 import { v4 as uuidv4 } from 'uuid';
 
 
 
-function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModal, balance, setBalance, edit=false}) {
+function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModal, balance, setBalance, edit=false, editId, handleEdit}) {
 
-    
+    const [editData, setEditData] = useState({
+        title : "",
+        price : 0,
+        date : "",
+        id : "",
+        category: ""
+    })
 
     const handleSubmit = (e) => {
             // console.log("event >>", e);
@@ -76,13 +82,32 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
 
     }
 
-    const handleEdit = (e) => {
-        console.log(" edit function");
+    
+    const findEditItem = () => {
+
+        if (edit == true) {
+            console.log("expenseData in edit >>", expenseData);
+            const editItem = expenseData.find((x) => x.id === editId);
+            console.log("edit item >>", editItem);
+
+            setEditData(editItem);
+        }
+        
     }
 
-    if(edit === true){
-        return (
-            <div className={styles.addBalanceWindow}>
+    useEffect(() => {
+
+        findEditItem();
+
+    }, [edit])
+
+    return (
+
+        <>
+        
+        {
+            edit == true ? (
+                <div className={styles.addBalanceWindow}>
                 <p className={styles.addBalanceText} >{`Edit Expenses`}</p>
                 <form
                 onSubmit={(e) => {
@@ -91,7 +116,7 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                         //before calling handler, run validation on input and only
                         //proceed to handler if passed
                         if(validateInput(e)){
-                            handleEdit(e);
+                            handleEdit(editId, editData, closeModal);
                             enqueueSnackbar("Expense edited successfully", {
                                 variant : "success"
                             })
@@ -102,15 +127,47 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                 name="addExpenseForm">
                     <input 
                     name="title"
-                    className={styles.expenseInput} type="text" placeholder="Title" />
+                    className={styles.expenseInput} type="text" placeholder="Title" 
+                    value={editData.title}
+                    onChange={(e) => {
+                        setEditData({
+                            ...editData,
+                            title : e.target.value
+                        });
+                    }}
+                    />
                     <input 
                     name="price"
-                    className={styles.expenseInput} type="number" placeholder="Price" />
+                    className={styles.expenseInput} type="number" placeholder="Price" 
+                    value={editData.price}
+                    onChange={(e) => {
+                        setEditData({
+                            ...editData,
+                            price : parseInt(e.target.value)
+                        });
+                    }}
+                    />
                     <input 
                     name="date"
-                    className={styles.expenseInput} type="date"/>
+                    className={styles.expenseInput} type="date"
+                    value={editData.date}
+                    onChange={(e) => {
+                        setEditData({
+                            ...editData,
+                            date : e.target.value
+                        });
+                    }}
+                    
+                    />
                     <select name="category"
                     className={styles.expenseInput}
+                    value={editData.category}
+                    onChange={(e) => {
+                        setEditData({
+                            ...editData,
+                            category : e.target.value
+                        });
+                    }}
                     >
                         <option value="" defaultValue>Select Category</option>
                         <option value="food" >Food</option>
@@ -124,12 +181,8 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                     type="button" className={styles.cancelButton}>Cancel</button>
                 </form>
             </div>
-    )
-    }
-
-
-    return (
-        <div className={styles.addBalanceWindow}>
+            ) : 
+            (<div className={styles.addBalanceWindow}>
                     <p className={styles.addBalanceText} >{`Add Expenses`}</p>
                     <form
                     onSubmit={(e) => {
@@ -170,7 +223,12 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
                         onClick={closeModal}
                         type="button" className={styles.cancelButton}>Cancel</button>
                     </form>
-                </div>
+                </div>)
+        }
+
+        
+
+            </>
     )
 }
 

@@ -11,7 +11,7 @@ export default function Tracker() {
     const [balance, setBalance] = useState(() => {
         const storedBalance = localStorage.getItem('balance');
         const intBalance = parseInt(storedBalance);
-        console.log("intbalance >>", intBalance);
+        // console.log("intbalance >>", intBalance);
 
         return ((!isNaN(intBalance)) ? intBalance : 5000)
     });
@@ -37,8 +37,8 @@ export default function Tracker() {
     }, [balance])
 
     useEffect(() => {
-        console.log("expense data >> ", expenseData);
-        console.log("expense >>", expense);
+        // console.log("expense data >> ", expenseData);
+        // console.log("expense >>", expense);
         
         //value received - lated update to save into localStorage
         localStorage.setItem('expenses', JSON.stringify(expenseData));
@@ -76,7 +76,7 @@ export default function Tracker() {
                 <ExpenseSummaryPie pieData={pieData} />
             </div>
             <div className={styles.barContainer}>
-                <RecentTransaction expenseData={expenseData} />
+                <RecentTransaction expenseData={expenseData} setExpenseData={setExpenseData} balance={balance} setBalance={setBalance} expense={expense} setExpense={setExpense} />
                 <ExpenseSummaryBar pieData={pieData} />
             </div>
         </div>
