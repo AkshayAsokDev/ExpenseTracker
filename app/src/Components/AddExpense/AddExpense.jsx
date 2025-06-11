@@ -86,9 +86,9 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
     const findEditItem = () => {
 
         if (edit == true) {
-            console.log("expenseData in edit >>", expenseData);
+            // console.log("expenseData in edit >>", expenseData);
             const editItem = expenseData.find((x) => x.id === editId);
-            console.log("edit item >>", editItem);
+            // console.log("edit item >>", editItem);
 
             setEditData(editItem);
         }
@@ -124,7 +124,8 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
 
                         
                 }}
-                name="addExpenseForm">
+                name="addExpenseForm"
+                className={styles.expenseForm}>
                     <input 
                     name="title"
                     className={styles.expenseInput} type="text" placeholder="Title" 
@@ -199,7 +200,8 @@ function AddExpense({expense, setExpense, expenseData, setExpenseData, closeModa
 
                             
                     }}
-                    name="addExpenseForm">
+                    name="addExpenseForm"
+                    className={styles.expenseForm}>
                         <input 
                         name="title"
                         className={styles.expenseInput} type="text" placeholder="Title" />

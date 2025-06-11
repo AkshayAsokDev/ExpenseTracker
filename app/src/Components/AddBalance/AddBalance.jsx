@@ -45,7 +45,8 @@ export default function AddBalance({balance , setBalance, closeModal}) {
                     }
                     
             }}
-            name="addBalanceForm">
+            name="addBalanceForm"
+            className={styles.balanceForm}>
                 <input 
                 name="addBalValue"
                 value={value}

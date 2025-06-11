@@ -51,3 +51,23 @@
     margin: 5px;
 
 }
+
+@media (max-width:1300px) {
+
+    .expenseForm {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .expenseInput {
+        width: 80%;
+    }
+
+    .cancelButton {
+        width: 80%;
+    }
+
+    .addExpenseButton {
+        width: 80%;
+    }
+}
